@@ -1,24 +1,29 @@
 import { StyleSheet, Text, View, Modal } from 'react-native'
-import { IconButton, DefaultButton } from '../Buttons'
+import { colors } from '../../Global/colors'
+import DefaultButton from '../Buttons/DefaultButton'
+import IconButton from '../Buttons/IconButton'
 import React from 'react'
-import globalStyles from '../../globalStyles'
+import { shadows } from '../../Global/shadows'
 
-const DefaultModal = ({ title, body }) => {
+const DefaultModal = ({ title, body, modalVisible, setModalVisible, onAccept }) => {
     return (
         <Modal
             animationType="fade"
             transparent={true}
             visible={modalVisible}
-            onRequestClose={() => {
-                setModalVisible(!modalVisible);
-            }}
         >
-            <IconButton icon='close' onPress={() => setModalVisible(!modalVisible)} />
-            <Text>{{ title }}</Text>
-            <Text>{{ body }}</Text>
-            <View style={styles.buttonRow}>
-                <DefaultButton text='Aceptar' onPress={() => setModalVisible(!modalVisible)} />
-                <DefaultButton text='Cancelar' onPress={() => setModalVisible(!modalVisible)} />
+            <View style={styles.centerModal}>
+                <View style={styles.modalView}>
+                    <View style={styles.closeButton}>
+                        <IconButton style={styles.closeButton} icon={'close-circle'} color={colors.secondaryAccent} onPress={() => setModalVisible(false)} />
+                    </View>
+                    <Text style={styles.modalTitle}>{title}</Text>
+                    <Text style={styles.modalBody} >{body}</Text>
+                    <View style={styles.buttonRow}>
+                        <DefaultButton text='Aceptar' color={colors.secondaryAccent} onPress={onAccept} />
+                        <DefaultButton text='Cancelar' color={colors.secondaryAccent} onPress={() => setModalVisible(!modalVisible)} />
+                    </View>
+                </View>
             </View>
         </Modal>
     )
@@ -27,23 +32,37 @@ const DefaultModal = ({ title, body }) => {
 export default DefaultModal
 
 const styles = StyleSheet.create({
+    closeButton: {
+        margin: 5,
+        alignSelf: 'flex-end'
+    },
     buttonRow: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'flex-end',
+        gap: 10
+    },
+    centerModal: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
     },
     modalView: {
         margin: 20,
-        backgroundColor: "white",
-        borderRadius: globalStyles.borderRadius.medium,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: globalStyles.shadowOffset.height,
-        },
-        shadowOpacity: globalStyles.shadowOpacity,
-        shadowRadius: globalStyles.shadowRadius,
-        elevation: globalStyles.elevation,
+        padding: 10,
+        elevation: 5,
+        borderRadius: 20,
+        backgroundColor: colors.secondary,
+        ...shadows
     },
+    modalTitle: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    modalBody: {
+        padding: 10,
+        fontSize: 13,
+    }
+
+
 })

@@ -2,7 +2,7 @@ export default taskList = [
     {
         id: "1",
         task: "Regar plantas",
-        completed: false
+        completed: true
     },
     {
         id: "2",
@@ -15,7 +15,7 @@ export default taskList = [
     }, {
         id: "4",
         task: "Ir a comprar carne",
-        completed: false
+        completed: true
     }, {
         id: "5",
         task: "Comprar carbón",

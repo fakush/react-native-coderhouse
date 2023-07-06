@@ -8,7 +8,7 @@ const DefaultButton = ({ icon, color, text, onPress }) => {
             style={[{ backgroundColor: color }, styles.buttonStyle]}
             onPress={onPress}
         >
-            {icon && <Icon name='plus-circle' size={20} type='material-community' color='white' />}
+            {icon && <Icon name={icon} size={20} type='material-community' color='white' />}
             <Text style={styles.textStyle}>{text}</Text>
         </Pressable>
     )

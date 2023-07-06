@@ -3,13 +3,13 @@ import { Icon } from 'react-native-elements'
 import globalStyles from '../../globalStyles'
 import React from 'react'
 
-const DefaultButton = ({ icon, onPress }) => {
+const DefaultButton = ({ icon, color, onPress }) => {
     return (
         <Pressable
-            style={[{ backgroundColor: 'transparent' }, styles.buttonStyle]}
-            onPress={() => onPress}
+            style={styles.buttonStyle}
+            onPress={onPress}
         >
-            <Icon name={{ icon }} size={50} type='material' />
+            <Icon name={icon} size={30} type='material-community' color={color} />
         </Pressable>
     )
 }
@@ -19,6 +19,7 @@ export default DefaultButton
 const styles = StyleSheet.create({
     buttonStyle: {
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
     }
 })
